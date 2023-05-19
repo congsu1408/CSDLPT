@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý đơn hàng</title>
+</head>
+<body>
+<h1>Quản lý đơn hàng</h1>
+
+<!-- Bảng hiển thị đơn hàng -->
+<table>
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Ngày đặt hàng</th>
+        <th>Tổng giá</th>
+        <th>Trạng thái</th>
+        <th>Ghi chú</th>
+        <th>ID khách hàng</th>
+        <th>ID chi nhánh</th>
+        <th>ID nhân viên</th>
+        <th></th>
+    </tr>
+    <!-- Lặp qua các đơn hàng và hiển thị thông tin -->
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.orderCode}"></td>
+        <td th:text="${order.orderDate}"></td>
+        <td th:text="${order.totalPrice}"></td>
+        <td th:text="${order.status}"></td>
+        <td th:text="${order.note}"></td>
+        <td th:text="${order.customerId}"></td>
+        <td th:text="${order.branchId}"></td>
+        <td th:text="${order.employeeId}"></td>
+        <td>
+            <a th:href="@{/orders/{orderId}/edit(orderId=${order.orderId})}">Sửa</a>
+            <a th:href="@{/orders/{orderId}/delete(orderId=${order.orderId})}">Xoá</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
